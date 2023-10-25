@@ -67,7 +67,8 @@ class MainActivity : AppCompatActivity() {
             throw Exception("Invalid input unit")
         }
 
-        return inputValue.toDouble() * conversionFactor
+        return conversionFactor.toDouble() * inputValue.toDouble()
+
     }
 }
 //package com.example.mad_assignment
