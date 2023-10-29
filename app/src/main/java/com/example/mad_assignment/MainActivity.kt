@@ -71,6 +71,12 @@ class MainActivity : AppCompatActivity() {
             val intent=Intent(this,Lengthconvert::class.java)
             startActivity(intent)
         }
+        val weight=findViewById<CardView>(R.id.weightbtnn)
+        weight.setOnClickListener{
+            val intent=Intent(this,Weightconvert::class.java)
+            startActivity(intent)
+        }
+
 
 //        editTextValue = findViewById(R.id.editTextValue)
 //        spinnerFrom = findViewById(R.id.spinnerFrom)

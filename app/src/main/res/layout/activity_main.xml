@@ -50,6 +50,14 @@
                 android:src="@drawable/weight" />
 
         </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:id="@+id/weightbtnn"
+            android:backgroundTint="@color/brown"
+            android:layout_marginTop="200dp">
+
+        </com.google.android.material.card.MaterialCardView>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

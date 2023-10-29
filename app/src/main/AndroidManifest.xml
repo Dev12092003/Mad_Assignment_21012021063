@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Mad_Assignment"
         tools:targetApi="31">
         <activity
+            android:name=".Speedconvert"
+            android:exported="false" />
+        <activity
+            android:name=".Volumeconvert"
+            android:exported="false" />
+        <activity
+            android:name=".Temperatureconvert"
+            android:exported="false" />
+        <activity
             android:name=".Weightconvert"
             android:exported="false" />
         <activity
