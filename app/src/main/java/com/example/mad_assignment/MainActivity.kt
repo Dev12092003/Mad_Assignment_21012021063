@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val cardView=findViewById<CardView>(R.id.weightbtn)
+        val cardView=findViewById<CardView>(R.id.lenghtbtn)
         cardView.setOnClickListener{
             val intent=Intent(this,Lengthconvert::class.java)
             startActivity(intent)
