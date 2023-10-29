@@ -3,7 +3,10 @@ package com.example.mad_assignment
 //import androidx.appcompat.app.AppCompatActivity
 //import android.os.Bundle
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,6 +14,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import java.math.BigDecimal
 
 class Lengthconvert : AppCompatActivity() {
@@ -58,6 +62,11 @@ class Lengthconvert : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lengthconvert)
+//        val back=findViewById<CardView>(R.id.backbtn)
+//        back.setOnClickListener{
+//            val intent=Intent(this,MainActivity::class.java)
+//            startActivity(intent)
+//        }
 
         editTextValue = findViewById(R.id.editTextValue)
         spinnerFrom = findViewById(R.id.spinnerFrom)
@@ -69,6 +78,25 @@ class Lengthconvert : AppCompatActivity() {
 
         spinnerFrom.adapter = adapter
         spinnerTo.adapter = adapter
+
+        setupListeners()
+        convertUnit()
+    }
+
+    private fun setupListeners() {
+        editTextValue.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Do nothing
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                convertUnit()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Do nothing
+            }
+        })
 
         spinnerFrom.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

@@ -76,6 +76,21 @@ class MainActivity : AppCompatActivity() {
             val intent=Intent(this,Weightconvert::class.java)
             startActivity(intent)
         }
+        val temperature=findViewById<CardView>(R.id.temperaturebtn)
+        temperature.setOnClickListener{
+            val intent=Intent(this,Temperatureconvert::class.java)
+            startActivity(intent)
+        }
+        val volume=findViewById<CardView>(R.id.volumebtn)
+        volume.setOnClickListener{
+            val intent=Intent(this,Volumeconvert::class.java)
+            startActivity(intent)
+        }
+        val speed=findViewById<CardView>(R.id.speedbtn)
+        speed.setOnClickListener{
+            val intent=Intent(this,Speedconvert::class.java)
+            startActivity(intent)
+        }
 
 
 //        editTextValue = findViewById(R.id.editTextValue)
