@@ -27,15 +27,15 @@ class Temperatureconvert : AppCompatActivity() {
         // Add more temperature units here
     )
 
-    private val temperatureConversionFactors = mapOf(
-        "Celsius" to mapOf("Fahrenheit" to BigDecimal("33.8").setScale(2), "Kelvin" to BigDecimal("274.15").setScale(2)),
-        "Fahrenheit" to mapOf("Celsius" to BigDecimal("0.55556").setScale(5), "Kelvin" to BigDecimal("255.372").setScale(3)),
-        "Kelvin" to mapOf("Celsius" to BigDecimal("0.55556").setScale(5), "Fahrenheit" to BigDecimal("1.8").setScale(2))
-//        "Celsius" to mapOf("Fahrenheit" to 32.0, "Kelvin" to 273.15),
-//        "Fahrenheit" to mapOf("Celsius" to -17.7778, "Kelvin" to 255.372),
-//        "Kelvin" to mapOf("Celsius" to -273.15, "Fahrenheit" to -457.87)
-        // Add more temperature unit conversions here
-    )
+//    private val temperatureConversionFactors = mapOf(
+//        "Celsius" to mapOf("Fahrenheit" to BigDecimal("33.8").setScale(2), "Kelvin" to BigDecimal("274.15").setScale(2)),
+//        "Fahrenheit" to mapOf("Celsius" to BigDecimal("0.55556").setScale(5), "Kelvin" to BigDecimal("255.372").setScale(3)),
+//        "Kelvin" to mapOf("Celsius" to BigDecimal("0.55556").setScale(5), "Fahrenheit" to BigDecimal("1.8").setScale(2))
+////        "Celsius" to mapOf("Fahrenheit" to 32.0, "Kelvin" to 273.15),
+////        "Fahrenheit" to mapOf("Celsius" to -17.7778, "Kelvin" to 255.372),
+////        "Kelvin" to mapOf("Celsius" to -273.15, "Fahrenheit" to -457.87)
+//        // Add more temperature unit conversions here
+//    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_temperatureconvert)
@@ -104,27 +104,39 @@ class Temperatureconvert : AppCompatActivity() {
             textViewResult.text = "Result: "
         }
     }
+//    private fun performConversion(fromUnit: String, toUnit: String, value: BigDecimal): BigDecimal {
+//        if (fromUnit == toUnit) {
+//            return value
+//        }
+//
+//        val directConversionFactor = temperatureConversionFactors[fromUnit]?.get(toUnit)
+//
+//        if (directConversionFactor != null) {
+//            return value * directConversionFactor
+//        }
+//
+//        for (commonUnit in units) {
+//            val factor1 = temperatureConversionFactors[fromUnit]?.get(commonUnit)
+//            val factor2 = temperatureConversionFactors[toUnit]?.get(commonUnit)
+//
+//            if (factor1 != null && factor2 != null) {
+//                return value.multiply(factor1).divide(factor2, 5, RoundingMode.HALF_UP)
+//            }
+//        }
+//
+//        return BigDecimal.ZERO
+//    }
+
     private fun performConversion(fromUnit: String, toUnit: String, value: BigDecimal): BigDecimal {
-        if (fromUnit == toUnit) {
-            return value
-        }
-
-        val directConversionFactor = temperatureConversionFactors[fromUnit]?.get(toUnit)
-
-        if (directConversionFactor != null) {
-            return value * directConversionFactor
-        }
-
-        for (commonUnit in units) {
-            val factor1 = temperatureConversionFactors[fromUnit]?.get(commonUnit)
-            val factor2 = temperatureConversionFactors[toUnit]?.get(commonUnit)
-
-            if (factor1 != null && factor2 != null) {
-                return value.multiply(factor1).divide(factor2, 5, RoundingMode.HALF_UP)
-            }
-        }
-
-        return BigDecimal.ZERO
+        return when {
+            fromUnit == "Celsius" && toUnit == "Fahrenheit" -> value.multiply(BigDecimal("1.8")).add(BigDecimal("32"))
+            fromUnit == "Celsius" && toUnit == "Kelvin" -> value.add(BigDecimal("273.15"))
+            fromUnit == "Fahrenheit" && toUnit == "Celsius" -> value.subtract(BigDecimal("32")).multiply(BigDecimal("0.55556"))
+            fromUnit == "Fahrenheit" && toUnit == "Kelvin" -> value.subtract(BigDecimal("32")).multiply(BigDecimal("0.55556")).add(BigDecimal("273.15"))
+            fromUnit == "Kelvin" && toUnit == "Celsius" -> value.subtract(BigDecimal("273.15"))
+            fromUnit == "Kelvin" && toUnit == "Fahrenheit" -> value.subtract(BigDecimal("273.15")).multiply(BigDecimal("1.8")).add(BigDecimal("32"))
+            else -> value // No conversion needed
+        }.setScale(2, RoundingMode.HALF_UP)
     }
 
 //    private fun performConversion(fromUnit: String, toUnit: String, value: BigDecimal): BigDecimal {
