@@ -7,6 +7,7 @@ package com.example.mad_assignment
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 
 class Weightconvert : AppCompatActivity() {
@@ -55,6 +57,11 @@ class Weightconvert : AppCompatActivity() {
 
         // Trigger the initial conversion
         convertUnit()
+        val back=findViewById<FloatingActionButton>(R.id.gotoh)
+        back.setOnClickListener{
+            val intent= Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupListeners() {

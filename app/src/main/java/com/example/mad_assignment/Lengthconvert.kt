@@ -15,6 +15,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.math.BigDecimal
 
 class Lengthconvert : AppCompatActivity() {
@@ -81,6 +82,11 @@ class Lengthconvert : AppCompatActivity() {
 
         setupListeners()
         convertUnit()
+        val back=findViewById<FloatingActionButton>(R.id.gotoh)
+        back.setOnClickListener{
+            val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setupListeners() {
